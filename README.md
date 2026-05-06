@@ -27,8 +27,6 @@ mvn "-Dtest=Suite3ChromeTest" test
 mvn "-Dtest=Suite3ChromeTest,Suite3FirefoxTest" test
 ```
 
-## Актуальная структура наборов
-
 ### Suite1
 - `Suite1Test` — Firefox
 - `Suite1ChromeExactTest` — Chrome
@@ -45,12 +43,7 @@ mvn "-Dtest=Suite3ChromeTest,Suite3FirefoxTest" test
 - `Suite3FirefoxTest` — Firefox
 - `Suite3ChromeTest` — Chrome
 
-Адаптирован под текущий лендинг «БОЛЬШИЕ ЯЙЦА — РАЗМЕР ИМЕЕТ ЗНАЧЕНИЕ»:
-- `nestScrollsToTopAfterDoubleReload`
-- `sizesScrollsToTopAfterDoubleReload`
-- `takeItScrollsToTopAfterDoubleReload`
-- `tiktokAfterDoubleReload` (проверка alert)
-- `telegramAfterDoubleReload` (проверка alert)
+Проверяет double-reload сценарии (2 перезагрузки) и навигацию по пунктам меню целевой страницы, а также уведомления.
 
 ### Suite4
 - `Suite4FirefoxTest` — Firefox
@@ -63,24 +56,6 @@ mvn "-Dtest=Suite3ChromeTest,Suite3FirefoxTest" test
 - `Suite5ChromeTest` — Chrome
 
 Проверяет якорную навигацию и видимость целевых секций на «большой» версии страницы.
-
-### Дополнительные классы
-- `DoubleReloadMenuAndAlertsTest`
-- `SingleReloadAnchorScrollTest`
-- `LandingPageBehaviorTest`
-- `EggEmpireNavigationTest`
-- `KonamiThemeChromeTest`
-- `KonamiThemeFirefoxTest`
-
-## Важные замечания
-
-1. `Suite5ChromeTest` запускается в видимом Chrome (headless отключен).
-2. Для новых тестов используется выбор элементов через XPath (как требовалось).
-3. Если видите ошибку `illegal character: '\ufeff'`, это BOM в `.java` файлах. Нужно сохранить файлы как `UTF-8 without BOM`.
-4. Если Chrome не стартует с ошибкой `DevToolsActivePort file doesn't exist`, проверьте:
-- совместимость Chrome/ChromeDriver
-- что Chrome не занят другим процессом
-- локальные политики/антивирус
 
 ## Стек
 
