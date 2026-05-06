@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -32,7 +33,7 @@ public class KonamiThemeChromeTest {
   @Test
   public void themeChangesAfterKonamiCodeWithFourReloads() {
     driver.get(BASE_URL);
-    for (int i = 0; i < 4; i++) driver.navigate().refresh();
+    for (int i = 0; i < 4; i++) safeRefresh();
     sleep(1500);
 
     WebElement body = driver.findElement(By.tagName("body"));
@@ -46,6 +47,14 @@ public class KonamiThemeChromeTest {
 
     String filter = (String) js.executeScript("return document.body.style.filter;");
     assertTrue("Expected hue-rotate theme effect", filter != null && filter.contains("hue-rotate"));
+  }
+
+  private void safeRefresh() {
+    try {
+      driver.navigate().refresh();
+    } catch (NoSuchWindowException e) {
+      driver.get(BASE_URL);
+    }
   }
 
   private void sleep(long ms) {
