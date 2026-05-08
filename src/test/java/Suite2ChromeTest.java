@@ -30,18 +30,18 @@ public class Suite2ChromeTest {
   }
 
   @Test public void homeScrollsToTopAfterSingleReload() { driver.get(BASE_URL); driver.navigate().refresh(); clickHomeMenu(); assertNearTop(); }
-  @Test public void catalogScrollsToCatalogAfterSingleReload() { driver.get(BASE_URL); driver.navigate().refresh(); clickMenuByHref("#catalog"); assertScrolledToSection(By.id("catalog")); }
-  @Test public void aboutScrollsToAboutAfterSingleReload() { driver.get(BASE_URL); driver.navigate().refresh(); clickMenuByHref("#about"); assertScrolledToSection(By.id("about")); }
-  @Test public void reviewsScrollsToReviewsAfterSingleReload() { driver.get(BASE_URL); driver.navigate().refresh(); clickMenuByHref("#reviews"); assertScrolledToSection(By.id("reviews")); }
+  @Test public void catalogScrollsToCatalogAfterSingleReload() { driver.get(BASE_URL); driver.navigate().refresh(); clickMenuByHref("#catalog"); assertScrolledToSection(By.xpath("//*[@id=\'catalog\']")); }
+  @Test public void aboutScrollsToAboutAfterSingleReload() { driver.get(BASE_URL); driver.navigate().refresh(); clickMenuByHref("#about"); assertScrolledToSection(By.xpath("//*[@id=\'about\']")); }
+  @Test public void reviewsScrollsToReviewsAfterSingleReload() { driver.get(BASE_URL); driver.navigate().refresh(); clickMenuByHref("#reviews"); assertScrolledToSection(By.xpath("//*[@id=\'reviews\']")); }
 
   private void clickMenuByHref(String href) {
-    WebElement link = driver.findElement(By.cssSelector("a[href='" + href + "']"));
+    WebElement link = driver.findElement(By.xpath("//a[@href='" + href + "']"));
     link.click();
     sleep(700);
   }
 
   private void clickHomeMenu() {
-    java.util.List<WebElement> items = driver.findElements(By.cssSelector("nav a"));
+    java.util.List<WebElement> items = driver.findElements(By.xpath("//nav//a"));
     if (!items.isEmpty()) {
       ((JavascriptExecutor) driver).executeScript("arguments[0].click();", items.get(0));
       sleep(700);
@@ -68,4 +68,5 @@ public class Suite2ChromeTest {
     try { Thread.sleep(millis); } catch (InterruptedException e) { Thread.currentThread().interrupt(); throw new RuntimeException(e); }
   }
 }
+
 

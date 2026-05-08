@@ -32,7 +32,7 @@ public class KonamiThemeFirefoxTest {
     for (int i = 0; i < 4; i++) driver.navigate().refresh();
     sleep(1500);
 
-    WebElement body = driver.findElement(By.tagName("body"));
+    WebElement body = driver.findElement(By.xpath("//body"));
     body.click();
     body.sendKeys(
       Keys.ARROW_UP, Keys.ARROW_UP, Keys.ARROW_DOWN, Keys.ARROW_DOWN,
@@ -49,4 +49,5 @@ public class KonamiThemeFirefoxTest {
     try { Thread.sleep(ms); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
   }
 }
+
 
